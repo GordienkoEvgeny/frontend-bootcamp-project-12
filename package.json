@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/GordienkoEvgeny/frontend-bootcamp-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.6"
+    "@hexlet/chat-server": "^1.1.6",
+    "react-router": "^6.8.2",
+    "react-router-dom": "^6.8.2"
   }
 }
