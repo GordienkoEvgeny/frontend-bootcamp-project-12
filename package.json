@@ -4,10 +4,10 @@
   "description": "[![Actions Status](https://github.com/GordienkoEvgeny/frontend-bootcamp-project-12/workflows/hexlet-check/badge.svg)](https://github.com/GordienkoEvgeny/frontend-bootcamp-project-12/actions)",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build --prefix frontend",
+    "start": "start-server -s ./frontend/build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx start-server",
-    "postinstall": "cd frontend && npm ci",
-    "build": "npm run build --prefix frontend"
+    "postinstall": "cd frontend && npm ci"
   },
   "repository": {
     "type": "git",

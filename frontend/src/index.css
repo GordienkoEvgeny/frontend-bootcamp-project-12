@@ -1,11 +1,14 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-/*body {*/
-/*    !* Градиент *!*/
-/*    background: linear-gradient(-45deg, #fff36a, #86ed66) fixed;*/
-/*}*/
+
 .text1 {
-    color:green;
+    color: #1db11d;
+    font-family: sans-serif;
     font-size: 23px;
+    font-weight: bold;
+    text-shadow: 1px 0 1px #ffffff,
+    0 1px 1px #bfb0b0,
+    -1px 0 1px limegreen,
+    0 -1px 1px #e7ede7;
 }
 
 body {
@@ -90,7 +93,7 @@ a:hover {
     width: 1000px;
     height: 200px;
     overflow: visible;
-    background-image: url(images/worldmap-7.svg);
+    background-image: url(components/images/worldmap-7.svg);
     background-repeat: no-repeat;
 }
 .globe-outer-shadow {
@@ -98,10 +101,10 @@ a:hover {
     top: 186px;
     width: 200px;
     height: 30px;
-    background-image: url(images/outer_shadow.svg);
+    background-image: url(components/images/outer_shadow.svg);
 }
 .globe-inner-shadow {
-    background-image: url(images/inner_shadow.svg);
+    background-image: url(components/images/inner_shadow.svg);
 }
 
 .globe-worldmap-front {

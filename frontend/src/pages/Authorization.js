@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import World from '../components/World';
 
 const validationSchema = Yup.object().shape({
