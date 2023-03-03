@@ -1,14 +1,148 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 /*body {*/
-/*  margin: 0;*/
-/*  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
-/*    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
-/*    sans-serif;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
+/*    !* Градиент *!*/
+/*    background: linear-gradient(-45deg, #fff36a, #86ed66) fixed;*/
 /*}*/
+.text1 {
+    color:green;
+    font-size: 23px;
+}
 
-/*code {*/
-/*  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
-/*    monospace;*/
-/*}*/
+body {
+    background: linear-gradient(-45deg, #a8f883, #6cf9da, #d0df63, #4ffe29);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+a{
+    color: green;
+    text-decoration: none;
+}
+
+a:hover {
+    color:limegreen;
+    text-decoration: none;
+}
+
+
+.globe-container,
+.globe {
+    width: 200px;
+    height: 200px;
+}
+.globe-container {
+    position: relative;
+    display: inline-block;
+    margin: 30px;
+    transform: scale(1);
+}
+.globe {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+.globe-worldmap,
+.globe-worldmap-front,
+.globe-worldmap-back,
+.globe-sphere,
+.globe-outer-shadow,
+.globe-inner-shadow {
+    position: absolute;
+    display: block;
+    margin: 0;
+}
+.globe-sphere,
+.globe-outer-shadow,
+.globe-inner-shadow {
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.globe-worldmap {
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.globe-worldmap-front,
+.globe-worldmap-back {
+    left: 0;
+    top: 0;
+    width: 1000px;
+    height: 200px;
+    overflow: visible;
+    background-image: url(images/worldmap-7.svg);
+    background-repeat: no-repeat;
+}
+.globe-outer-shadow {
+    left: 0;
+    top: 186px;
+    width: 200px;
+    height: 30px;
+    background-image: url(images/outer_shadow.svg);
+}
+.globe-inner-shadow {
+    background-image: url(images/inner_shadow.svg);
+}
+
+.globe-worldmap-front {
+    background-position: 0px 0px;
+    animation: textureSpinreverse 8s linear infinite;
+}
+.globe-worldmap-back {
+    background-position: 0px -220px;
+    animation: textureSpin 8s linear infinite;
+}
+
+@keyframes textureSpin {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-47.5%);
+    }
+}
+@keyframes textureSpinreverse {
+    from {
+        transform: translateX(-47.5%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.third {
+    border-color: #60f65f;
+    color: #fff;
+    box-shadow: 0 0 40px 40px #32a732 inset, 0 0 0 0 #339c32;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+}
+.third:hover {
+    box-shadow: 0 0 10px 0 #52f927 inset, 0 0 10px 4px #60f65f;
+}
+.icons8-github {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNjQiIGhlaWdodD0iNjQiCnZpZXdCb3g9IjAgMCA2NCA2NCI+CjxwYXRoIGQ9Ik0zMiA2QzE3LjY0MSA2IDYgMTcuNjQxIDYgMzJjMCAxMi4yNzcgOC41MTIgMjIuNTYgMTkuOTU1IDI1LjI4Ni0uNTkyLS4xNDEtMS4xNzktLjI5OS0xLjc1NS0uNDc5VjUwLjg1YzAgMC0uOTc1LjMyNS0yLjI3NS4zMjUtMy42MzcgMC01LjE0OC0zLjI0NS01LjUyNS00Ljg3NS0uMjI5LS45OTMtLjgyNy0xLjkzNC0xLjQ2OS0yLjUwOS0uNzY3LS42ODQtMS4xMjYtLjY4Ni0xLjEzMS0uOTItLjAxLS40OTEuNjU4LS40NzEuOTc1LS40NzEgMS42MjUgMCAyLjg1NyAxLjcyOSAzLjQyOSAyLjYyMyAxLjQxNyAyLjIwNyAyLjkzOCAyLjU3NyAzLjcyMSAyLjU3Ny45NzUgMCAxLjgxNy0uMTQ2IDIuMzk3LS40MjYuMjY4LTEuODg4IDEuMTA4LTMuNTcgMi40NzgtNC43NzQtNi4wOTctMS4yMTktMTAuNC00LjcxNi0xMC40LTEwLjQgMC0yLjkyOCAxLjE3NS01LjYxOSAzLjEzMy03Ljc5MkMxOS4zMzMgMjMuNjQxIDE5IDIyLjQ5NCAxOSAyMC42MjVjMC0xLjIzNS4wODYtMi43NTEuNjUtNC4yMjUgMCAwIDMuNzA4LjAyNiA3LjIwNSAzLjMzOEMyOC40NjkgMTkuMjY4IDMwLjE5NiAxOSAzMiAxOXMzLjUzMS4yNjggNS4xNDUuNzM4YzMuNDk3LTMuMzEyIDcuMjA1LTMuMzM4IDcuMjA1LTMuMzM4LjU2NyAxLjQ3NC42NSAyLjk5LjY1IDQuMjI1IDAgMi4wMTUtLjI2OCAzLjE5LS40MzIgMy42OTdDNDYuNDY2IDI2LjQ3NSA0Ny42IDI5LjEyNCA0Ny42IDMyYzAgNS42ODQtNC4zMDMgOS4xODEtMTAuNCAxMC40IDEuNjI4IDEuNDMgMi42IDMuNTEzIDIuNiA1Ljg1djguNTU3Yy0uNTc2LjE4MS0xLjE2Mi4zMzgtMS43NTUuNDc5QzQ5LjQ4OCA1NC41NiA1OCA0NC4yNzcgNTggMzIgNTggMTcuNjQxIDQ2LjM1OSA2IDMyIDZ6TTMzLjgxMyA1Ny45M0MzMy4yMTQgNTcuOTcyIDMyLjYxIDU4IDMyIDU4IDMyLjYxIDU4IDMzLjIxMyA1Ny45NzEgMzMuODEzIDU3Ljkzek0zNy43ODYgNTcuMzQ2Yy0xLjE2NC4yNjUtMi4zNTcuNDUxLTMuNTc1LjU1NEMzNS40MjkgNTcuNzk3IDM2LjYyMiA1Ny42MSAzNy43ODYgNTcuMzQ2ek0zMiA1OGMtLjYxIDAtMS4yMTQtLjAyOC0xLjgxMy0uMDdDMzAuNzg3IDU3Ljk3MSAzMS4zOSA1OCAzMiA1OHpNMjkuNzg4IDU3LjljLTEuMjE3LS4xMDMtMi40MTEtLjI4OS0zLjU3NC0uNTU0QzI3LjM3OCA1Ny42MSAyOC41NzEgNTcuNzk3IDI5Ljc4OCA1Ny45eiI+PC9wYXRoPgo8L3N2Zz4=') 50% 50% no-repeat;
+    background-size: 100%; }
