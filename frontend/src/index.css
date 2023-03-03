@@ -6,15 +6,15 @@
     font-size: 23px;
     font-weight: bold;
     text-shadow: 1px 0 1px #ffffff,
-    0 1px 1px #bfb0b0,
+    0 1px 1px #92e972,
     -1px 0 1px limegreen,
     0 -1px 1px #e7ede7;
 }
 
 body {
-    background: linear-gradient(-45deg, #a8f883, #6cf9da, #d0df63, #4ffe29);
+    background: linear-gradient(-45deg, #a8f883, #6cf9da, #dcee4d, #4ffe29);
     background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+    animation: gradient 8s ease infinite;
 }
 
 @keyframes gradient {
@@ -48,7 +48,7 @@ a:hover {
     position: relative;
     display: inline-block;
     margin: 30px;
-    transform: scale(1);
+    transform: scale(1.3);
 }
 .globe {
     position: relative;
