@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Navbar = () => (
-  <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
+  <nav className="rounded-2 shadow-sm navbar navbar-light bg-light">
     <div className="container">
       <a className="text1" href="/">
-        Green Chat
+        World Chat
       </a>
-      <a className="icons8-github" href="https://github.com/GordienkoEvgeny"> </a>
+      <a className="icons8-github icongithub" href="https://github.com/GordienkoEvgeny" target="_blank" rel="noreferrer"> </a>
     </div>
   </nav>
 );

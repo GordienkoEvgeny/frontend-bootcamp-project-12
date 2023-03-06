@@ -1,20 +1,23 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+.icongithub {
+    margin-right:50px;
+}
+
 .text1 {
-    color: #1db11d;
-    font-family: sans-serif;
-    font-size: 23px;
-    font-weight: bold;
-    text-shadow: 1px 0 1px #ffffff,
-    0 1px 1px #92e972,
-    -1px 0 1px limegreen,
-    0 -1px 1px #e7ede7;
+    font-family:'lato', sans-serif;
+    font-size: 25px;
+    margin-left:50px;
+    font-weight: bolder;
+    background-image: linear-gradient(180deg, #15334a, #b6effb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 
 body {
-    background: linear-gradient(-45deg, #a8f883, #6cf9da, #dcee4d, #4ffe29);
-    background-size: 400% 400%;
-    animation: gradient 8s ease infinite;
+    height: 100%;
+    background: radial-gradient(circle at center, #233042 55%,#090a0f 100%);
 }
 
 @keyframes gradient {
@@ -29,12 +32,12 @@ body {
     }
 }
 a{
-    color: green;
+    color: #5c636a;
     text-decoration: none;
 }
 
 a:hover {
-    color:limegreen;
+    color: #2289ce;
     text-decoration: none;
 }
 
@@ -93,7 +96,7 @@ a:hover {
     width: 1000px;
     height: 200px;
     overflow: visible;
-    background-image: url(components/images/worldmap-7.svg);
+    background-image: url(components/images/worldmap-4.svg);
     background-repeat: no-repeat;
 }
 .globe-outer-shadow {
@@ -134,15 +137,16 @@ a:hover {
 }
 
 .third {
-    border-color: #60f65f;
+    border-color: #5c636a;
     color: #fff;
-    box-shadow: 0 0 40px 40px #32a732 inset, 0 0 0 0 #339c32;
+    box-shadow: 0 0 40px 40px #1c4563 inset, 0 0 0 0 #1b2735;
     -webkit-transition: all 150ms ease-in-out;
     transition: all 150ms ease-in-out;
 }
 .third:hover {
-    box-shadow: 0 0 10px 0 #52f927 inset, 0 0 10px 4px #60f65f;
+    box-shadow: 0 0 10px 0 #1c4563 inset, 0 0 10px 4px #1c4563;
 }
+
 .icons8-github {
     display: inline-block;
     width: 44px;
