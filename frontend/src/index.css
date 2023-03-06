@@ -1,4 +1,17 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+::-webkit-scrollbar {
+    width: 0;
+}
+.navbar1 {
+    position:fixed;
+    top:0;
+    width: 100%;
+    z-index:100;
+}
+
+.indent {
+    margin-top:60px;
+}
 
 .icongithub {
     margin-right:50px;
