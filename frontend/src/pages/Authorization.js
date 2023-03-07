@@ -40,7 +40,7 @@ const BuildAuthForms = () => {
     onSubmit: async (values) => {
       try {
         const res = await axios.post(paths.loginPath(), values);
-        localStorage.setItem(res.data.username, JSON.stringify(res.data.token));
+        localStorage.setItem(res.data.username, JSON.stringify(res.data));
         redirect(paths.chatPath());
         console.log(use);
       } catch (err) {
