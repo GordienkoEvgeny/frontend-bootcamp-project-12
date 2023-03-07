@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -24,10 +24,11 @@ const validationSchema = Yup.object().shape({
     .max(20, 'Password must be no more than 20 characters')
     .required('Required field'),
 });
-const BuildForms = () => {
-  let flagForm = true;
-  const formState = cn('form-control', { 'is-invalid': flagForm });
-  let error = 'Неверные имя пользователя или пароль';
+const BuildAuthForms = () => {
+  const [successAuth, setSuccessAuth] = useState(false);
+  const [error, setError] = useState(null);
+  const formState = cn('form-control', { 'is-invalid': successAuth });
+  const formAlert = cn({ 'alert-danger': successAuth, alert: successAuth });
   const use = useAuthorization();
   const redirect = useNavigate();
   const formik = useFormik({
@@ -40,18 +41,14 @@ const BuildForms = () => {
       try {
         const res = await axios.post(paths.loginPath(), values);
         localStorage.setItem(res.data.username, JSON.stringify(res.data.token));
-        console.log(localStorage);
         redirect(paths.chatPath());
         console.log(use);
       } catch (err) {
         if (err.response.status === 401) {
-          flagForm = true;
-          error = 'Неверные имя пользователя или пароль';
-          console.log(error);
-          console.log(flagForm);
+          setSuccessAuth(true);
+          setError('Неверные имя пользователя или пароль');
         }
       }
-      // alert(JSON.stringify(values, null, 2));
     },
   });
   return (
@@ -99,7 +96,7 @@ const BuildForms = () => {
                         <div>{formik.errors.password}</div>
                       ) : null}
                     </div>
-                    <div className="alert alert-danger" role="alert">
+                    <div className={formAlert} role="alert">
                       {error}
                     </div>
                     <button onSubmit={formik.handleSubmit} type="submit" className="btn third">Войти</button>
@@ -119,4 +116,4 @@ const BuildForms = () => {
     </div>
   );
 };
-export default BuildForms;
+export default BuildAuthForms;
