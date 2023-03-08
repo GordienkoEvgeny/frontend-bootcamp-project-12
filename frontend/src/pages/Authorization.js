@@ -54,16 +54,16 @@ const BuildAuthForms = () => {
   return (
     <div className="d-flex flex-column h-100">
       <Navbar />
-      <div className="container-fluid h-100">
+      <div className="container-fluid indent">
         <div className="row justify-content-center align-content-center h-100">
           <div className="col-12 col-md-8 col-xxl-6">
             <div className="card shadow-sm indent">
-              <div className="card-body row p-5 justify-content-center ">
+              <div className="card-body row justify-content-center indent2">
                 <div className="col-12 col-md-6 d-flex justify-content-center">
                   <World />
                 </div>
                 <div />
-                <div className="card-body row p-5 justify-content-center ">
+                <div className="card-body row p-4 justify-content-center ">
                   <form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0 ">
                     <h1 className="text-center mb-4">Войти</h1>
                     <div className="mb-3">

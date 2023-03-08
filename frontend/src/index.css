@@ -3,20 +3,17 @@
     width: 0;
 }
 
-.bg-light-channels {
-    background: #ececf5;
-}
 #root {
-    height: 110vh;
+    height: 100vh;
 }
 .cn {
-    height: 8vh
+    height: 70px;
 }
-.navbar1 {
+.fx {
     position:fixed;
     top:0;
     width: 100%;
-    /*z-index:100;*/
+    z-index:99999;
 }
 .button1 {
     display: block;
@@ -26,7 +23,15 @@
 
 .indent {
     margin-top:60px;
-    z-index:1000
+    z-index:100
+}
+
+.indent2 {
+    margin-top:20px;
+}
+
+.indent3 {
+    margin-right:20px;
 }
 
 .icongithub {
