@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Navbar = () => (
-  <nav className="fx rounded-2 shadow-sm navbar navbar-light bg-light">
+  <nav className="nb rounded-2 shadow-sm navbar navbar-light bg-light">
     <div className="container">
       <a className="text1" href="/">
         World Chat
