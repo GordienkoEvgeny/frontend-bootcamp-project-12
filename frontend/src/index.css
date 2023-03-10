@@ -203,10 +203,17 @@ a:hover {
     width: 100%;
     z-index:99999;
 }
-
+.up {
+    vertical-align: 15px;
+}
 .fx {
     position:fixed;
     top:0;
     width: 100%;
     z-index:100;
 }
+
+.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }

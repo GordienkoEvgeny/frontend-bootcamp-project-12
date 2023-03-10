@@ -2,24 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import paths from '../paths';
 import icon8 from '../components/images/icon8.svg';
-// const { createSlice } from '@reduxjs/toolkit'
-
-// const initialState = {
-//   channels: null,
-//   messages: null,
-// }
+import chat2 from '../components/images/chat2.svg';
+import { actions as channelsActions, selectors as channelsSelectors } from '../slices/channelsSlice.js';
+import { actions as messagesActions, selectors as messagesSelectors } from '../slices/messagesSlice.js';
 
 // eslint-disable-next-line consistent-return
 const BuildChatPage = () => {
-  const [primaryChannel, setPrimaryChannel] = useState(null);
-  const classChanels = cn('w-100 rounded-0 text-start btn', { 'btn-secondary': primaryChannel });
-  const [channels, setChannels] = useState(null);
-  const [messages, setMessages] = useState(null);
+  const [primaryChannelId, setPrimaryChannelId] = useState(null);
+  const classChanels = cn('w-100 rounded-0 text-start btn', { 'btn-secondary': false });
+  const [, setMessages] = useState(null);
   const [currentText, setText] = useState('');
   const [, setToken] = useState(false);
   const redirect = useNavigate();
+  const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('admin'));
   const handleChange = (e) => {
     e.preventDefault();
@@ -28,13 +26,10 @@ const BuildChatPage = () => {
 
   const submitMessage = (e) => { //! !!!!
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
     setMessages(currentText);
   };//! !!!!
 
-  const setActiveСhannel = () => {
-    setPrimaryChannel(true);
-  };
   const exit = () => {
     localStorage.clear();
     redirect(paths.loginPagePath());
@@ -49,8 +44,10 @@ const BuildChatPage = () => {
       const responceChat = async (data) => {
         try {
           const res = await axios.get(paths.usersPath(), { headers: { Authorization: `Bearer ${data.token}` } });
-          setChannels(res.data.channels);
-          setMessages(res.data.messages);
+          dispatch(channelsActions.addChannels(res.data.channels));
+          dispatch(messagesActions.addMessages(res.data.messages));
+          setPrimaryChannelId(res.data.currentChannelId);
+          // console.log(res.data);
         } catch (err) {
           if (err) {
             console.log(err);
@@ -60,7 +57,21 @@ const BuildChatPage = () => {
       responceChat(token);
     }
   }, []);
-  // console.log(messages);
+  const { channels } = useSelector((state) => {
+    const allChannels = channelsSelectors.selectAll(state);
+    return { channels: allChannels };
+  });
+  const { activeChannel } = useSelector((state) => {
+    const channel = channelsSelectors.selectById(state, primaryChannelId);
+    return { activeChannel: channel };
+  });
+  const { currentMessages } = useSelector((state) => {
+    const activeMessages = messagesSelectors.selectAll(state)
+      .filter(({ id }) => id === primaryChannelId);
+    return { currentMessages: activeMessages };
+  });
+  console.log(activeChannel, 'Activechannel');
+  console.log(channels);
   return (
     <div className="h-100">
       <div className="h-100" id="chat">
@@ -81,9 +92,8 @@ const BuildChatPage = () => {
                 <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
                   {channels && channels.map((item) => (
                     <li key={item.id} className="nav-item w-100">
-                      <button type="button" onClick={setActiveСhannel} className={classChanels}>
+                      <button type="button" onClick={() => setPrimaryChannelId(item.id)} className={classChanels}>
                         <span className="me-1">
-                          {/* eslint-disable-next-line jsx-a11y/alt-text */}
                           <img src={icon8} alt="icon" />
                         </span>
                         {item.name}
@@ -94,15 +104,19 @@ const BuildChatPage = () => {
               </div>
               <div className="col p-0 h-100">
                 <div className="d-flex flex-column h-100">
-                  <div className="cn bg-light mb-4 p-3 shadow-sm small rounded-2">
-                    <p className="m-0">
-                      <b className="text2">Test</b>
-                      <button type="button" onClick={exit} className="btn btn-outline-danger button1">Выйти</button>
+                  <div className="bg-light mb-4 p-3 shadow-sm small rounded-2">
+                    <button type="button" onClick={exit} className="btn btn-outline-danger button1">Выйти</button>
+                    <p className="text2 fw-bolder fs-6">
+                      <img src={chat2} alt="chat" />
+                      {` ${activeChannel && activeChannel.name}`}
                     </p>
+                    <b className="text2">
+                      {` ${currentMessages.length} сообщений`}
+                    </b>
                   </div>
                   <div id="messages-box" className="chat-messages overflow-auto px-5 ">
                     <div className="text-break mb-2">
-                      {messages && messages.map((message) => <b key="1" className="text2">{message}</b>)}
+                      {currentMessages && currentMessages.map((message) => <b key="1" className="text2">{message}</b>)}
                     </div>
                   </div>
                   <div className="mt-auto px-5 py-3">
