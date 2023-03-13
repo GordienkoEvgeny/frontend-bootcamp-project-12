@@ -8,6 +8,7 @@ import icon8 from '../components/images/icon8.svg';
 import chat2 from '../components/images/chat2.svg';
 import { actions as channelsActions, selectors as channelsSelectors } from '../slices/channelsSlice.js';
 import { actions as messagesActions, selectors as messagesSelectors } from '../slices/messagesSlice.js';
+import useAuthorization from '../hooks';
 
 // eslint-disable-next-line consistent-return
 const BuildChatPage = () => {
@@ -18,7 +19,8 @@ const BuildChatPage = () => {
   const [, setToken] = useState(false);
   const redirect = useNavigate();
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem('admin'));
+  const token = JSON.parse(localStorage.getItem('user'));
+  const auth = useAuthorization();
   const handleChange = (e) => {
     e.preventDefault();
     setText(e.target.value);
@@ -30,12 +32,7 @@ const BuildChatPage = () => {
     setMessages(currentText);
   };//! !!!!
 
-  const exit = () => {
-    localStorage.clear();
-    redirect(paths.loginPagePath());
-  };
   useEffect(() => {
-    // console.log('useEffect');
     if (!token) {
       setToken(false);
       redirect(paths.loginPagePath());
@@ -70,8 +67,6 @@ const BuildChatPage = () => {
       .filter(({ id }) => id === primaryChannelId);
     return { currentMessages: activeMessages };
   });
-  console.log(activeChannel, 'Activechannel');
-  console.log(channels);
   return (
     <div className="h-100">
       <div className="h-100" id="chat">
@@ -105,7 +100,7 @@ const BuildChatPage = () => {
               <div className="col p-0 h-100">
                 <div className="d-flex flex-column h-100">
                   <div className="bg-light mb-4 p-3 shadow-sm small rounded-2">
-                    <button type="button" onClick={exit} className="btn btn-outline-danger button1">Выйти</button>
+                    <button type="button" onClick={auth.logOut} className="btn btn-outline-danger button1">Выйти</button>
                     <p className="text2 fw-bolder fs-6">
                       <img src={chat2} alt="chat" />
                       {` ${activeChannel && activeChannel.name}`}

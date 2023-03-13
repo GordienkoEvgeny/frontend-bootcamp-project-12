@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
@@ -23,12 +22,12 @@ const validationSchema = Yup.object().shape({
     .max(20, 'Password must be no more than 20 characters')
     .required('Required field'),
 });
-const BuildAuthForms = () => {
+const BuildAuthPage = () => {
   const [successAuth, setSuccessAuth] = useState(false);
   const [error, setError] = useState(null);
   const formState = cn('form-control', { 'is-invalid': successAuth });
   const formAlert = cn({ 'alert-danger': successAuth, alert: successAuth });
-  const use = useAuthorization();
+  const auth = useAuthorization();
   const redirect = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -38,11 +37,12 @@ const BuildAuthForms = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const responce = await axios.post(paths.loginPath(), values);
-        localStorage.setItem(responce.data.username, JSON.stringify(responce.data));
+        const response = await axios.post(paths.loginPath(), values);
+        localStorage.setItem('user', JSON.stringify(response.data));
+        auth.logIn();
         redirect(paths.chatPath());
-        console.log(use);
       } catch (err) {
+        console.log(err);
         if (err.response.status === 401) {
           setSuccessAuth(true);
           setError('Неверные имя пользователя или пароль');
@@ -114,4 +114,4 @@ const BuildAuthForms = () => {
     </div>
   );
 };
-export default BuildAuthForms;
+export default BuildAuthPage;
