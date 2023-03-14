@@ -42,7 +42,6 @@ const BuildAuthPage = () => {
         auth.logIn();
         redirect(paths.chatPath());
       } catch (err) {
-        console.log(err);
         if (err.response.status === 401) {
           setSuccessAuth(true);
           setError('Неверные имя пользователя или пароль');
